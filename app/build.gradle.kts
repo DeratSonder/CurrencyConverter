@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -56,4 +58,16 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
+    // Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.11.0")
+
+    // Dagger - Hilt
+    implementation("com.google.dagger:hilt-android:2.52")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
+    ksp ("com.google.dagger:hilt-android-compiler:2.51.1")
+    ksp ("androidx.hilt:hilt-compiler:1.2.0")
+
 }
