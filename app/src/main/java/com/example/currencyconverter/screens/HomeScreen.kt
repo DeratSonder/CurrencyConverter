@@ -56,9 +56,6 @@ import com.example.currencyconverter.viewmodels.CurrencyConverterViewModel
 import java.text.DecimalFormat
 
 val backgroundColor = Color(0xff14150f)
-val buttonColor = Color(0xff181818)
-val focusColor = Color(0xFF98FB98)
-val errorColor = Color(0xFFE53935)
 
 @Composable
 fun HomeScreen(
@@ -88,8 +85,8 @@ fun HomeScreen(
                 .fillMaxSize()
                 .background(backgroundColor)
                 .padding(paddingValues)
-                .padding(20.dp),
-            verticalArrangement = Arrangement.Center,
+                .padding(vertical = 20.dp)
+                .padding(horizontal = 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -176,63 +173,6 @@ fun SwapButton(
                 .rotate(90f),
         )
     }
-}
-
-fun isValidDouble(input: String): Boolean {
-    return input.toDoubleOrNull() != null
-}
-
-@Preview
-@Composable
-fun InputTextField(
-    modifier: Modifier = Modifier,
-    isValidInput: Boolean = true,
-    onValueChange: (String) -> Unit = {}
-) {
-    var input by remember { mutableStateOf("") }
-    var isFocused by remember { mutableStateOf(false) }
-
-    TextField(
-        value = input,
-        onValueChange = {
-            input = it
-            onValueChange(it)
-        },
-        textStyle = TextStyle(color = Color.White),
-
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp)
-            .border(
-                width = 2.dp,
-                color = if (isFocused) focusColor else if (!isValidInput) errorColor else buttonColor,
-                shape = RoundedCornerShape(12.dp)
-            )
-            .onFocusChanged { focusState ->
-                isFocused = focusState.isFocused
-            },
-        colors = TextFieldDefaults.colors(
-            focusedContainerColor = buttonColor,
-            unfocusedContainerColor = buttonColor,
-            focusedTextColor = Color.White,
-            unfocusedTextColor = Color.White,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            focusedPlaceholderColor = Color.White,
-            unfocusedPlaceholderColor = Color.White,
-            errorIndicatorColor = Color.Transparent
-        ),
-        shape = RoundedCornerShape(12.dp),
-        keyboardOptions = KeyboardOptions.Default.copy(
-            keyboardType = KeyboardType.Number
-        ),
-        keyboardActions = KeyboardActions(
-            onDone = KeyboardActions.Default.onDone
-        ),
-        singleLine = true,
-        isError = !isValidInput
-    )
-
 }
 
 @Composable

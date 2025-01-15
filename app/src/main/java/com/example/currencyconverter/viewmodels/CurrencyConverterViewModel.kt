@@ -62,19 +62,22 @@ class CurrencyConverterViewModel @Inject constructor(
             }
 
             if (response.isSuccess) {
-                val exchangeResponse = response.getOrNull()
-                val conversionRates = exchangeResponse?.conversionRates
+                val conversionRates = response.getOrNull()?.conversionRates
+
                 if (conversionRates != null) {
                     val rates = conversionRates.entries.find { it.key == toCurrency }?.value ?: 0.0
                     val convertedValue = value * rates
                     _convertedValue.value = convertedValue
                 }
+
             } else {
+
                 val errorResponse = response.exceptionOrNull()?.message
                 val gson = Gson()
                 val error: ExchangeError = gson.fromJson(errorResponse , ExchangeError::class.java)
                 _isError.value = true
                 _error.value = error.errorType
+
             }
         }
     }
