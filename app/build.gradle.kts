@@ -70,4 +70,8 @@ dependencies {
     ksp ("com.google.dagger:hilt-android-compiler:2.51.1")
     ksp ("androidx.hilt:hilt-compiler:1.2.0")
 
+    // Navigation
+    implementation ("com.google.accompanist:accompanist-navigation-animation:0.30.1")
+    implementation ("androidx.navigation:navigation-compose:2.8.5")
+
 }
